@@ -1,0 +1,87 @@
+<%-include("partials/header.ejs") %>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="main">
+            <h1>Your Blogs</h1>
+            <div class="blogs">
+                <% if(locals.blogs) { %>
+                    <% if(blogs.length==0) {%>
+                        <p>No Blogs Yet</p>
+                    <% } %>
+                    <% blogs.forEach(function(blog, index) { %>
+<div class="blog-card" onclick="expandBlog(this)">
+    <div class="temp">
+        <div class="read-overlay">
+            Read&nbsp; <i class="fa-solid fa-up-right-from-square" style="color: rgb(230, 230, 230);"></i>
+        </div>
+        <h2><%= blog.title %></h2>
+        <p class="blog-content-text"><%= blog.content %></p> 
+    </div>
+
+    <div class="dots" onclick="toggleButtons(event, this)">
+        <i class="fa-solid fa-ellipsis-vertical" id="actualdots"></i>
+        <form action="/delete" method="post"
+            onSubmit="if(!confirm('Are you sure you want to delete this blog?')){return false;}">
+            <input type="text" value="<%=blog.id%>" style="display: none;" name="blogid">
+            <input type="submit" value="Delete" class="subbtn">
+        </form>
+        <form action="/edit" method="post">
+            <input type="text" value="<%=blog.id%>" style="display: none;" name="blogid">
+            <input type="submit" value="Edit" class="subbtn">
+        </form>
+    </div>
+
+    <div class="close-btn" onclick="event.stopPropagation(); collapseBlog(this)">✖</div>
+</div>
+
+
+
+                    <% }) %>
+                <% } else { %>
+                        <p>No Blogs Yet</p>
+                <% } %>
+            </div>
+        </div>
+        <script>
+        function toggleButtons(element) {
+            // Get the parent blog-card
+            const blogCard = element.closest('.blog-card');
+            // Toggle the 'show-buttons' class on the blog-card
+            blogCard.classList.toggle('show-buttons');
+        }
+        </script>
+
+    </body>
+    <script>
+function toggleButtons(event, element) {
+    event.stopPropagation(); // Prevent click from triggering expand
+    const blogCard = element.closest('.blog-card');
+    blogCard.classList.toggle('show-buttons');
+}
+
+function expandBlog(card) {
+    if (!card.classList.contains("expanded")) {
+        card.classList.add("expanded");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function collapseBlog(closeBtn) {
+    const card = closeBtn.closest(".blog-card");
+    card.classList.remove("expanded");
+    document.body.style.overflow = "auto";
+}
+</script>
+
+    </html>
+    <%-include("partials/footer.ejs") %>

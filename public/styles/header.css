@@ -1,0 +1,117 @@
+.nav {
+    background-color: #555879;
+    position: fixed;
+    top: 0;
+    overflow: hidden; /* Keep this for the sticky header itself */
+    z-index: 2;
+    /* NEW: Add min-height to ensure it can contain the expanded menu */
+    min-height: 60px; /* Default height */
+    width: 100%;
+}
+
+/* Add a class to expand the nav height when the menu is open */
+.nav.expanded-menu {
+    min-height: calc(60px + 184px); /* Base height + menu height, adjust if needed */
+    /* Or simply remove overflow: hidden; when expanded if that's acceptable */
+    overflow: visible; /* CRITICAL: Allow content to flow outside when menu is open */
+}
+
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 85%;
+    height: 60px; /* This is good for the fixed bar */
+}
+
+.navlinks ul {
+    list-style: none;
+    text-align: right;
+    padding: 0;
+    display: flex; /* Default for larger screens */
+    /* float: none; This is irrelevant due to position:absolute */
+}
+
+.navlinks ul li {
+    padding: 0 20px;
+}
+
+h1 {
+    margin: 0 !important;
+}
+
+.navlinks ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.25s;
+    font-weight: 100;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.navlinks ul li a:hover {
+    background-color: #98A1BC;
+}
+
+.head h1 {
+    color: white;
+}
+
+/* Hamburger menu icon styles */
+.menu-icon {
+    display: none; /* Hidden by default on larger screens */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-icon .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .head {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .navlinks ul {
+        display: none; /* Hide by default on small screens */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #555879;
+        position: absolute;
+        top: 60px; /* Below the header */
+        left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        z-index: 1000; /* Ensure it's on top */
+        /* float: none !important; This is irrelevant due to position:absolute */
+    }
+
+    .navlinks.active ul {
+        display: flex;
+    }
+
+    .navlinks.active ul li {
+        background-color: #98A1BC;
+        margin-top: 5px;
+    }
+
+    .navlinks ul li {
+        padding: 10px 0; /* Adjust padding for vertical links */
+        /* float: none !important; This is irrelevant due to parent being flex item */
+    }
+
+    .menu-icon {
+        display: flex; /* Show hamburger icon */
+    }
+}

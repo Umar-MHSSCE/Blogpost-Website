@@ -1,0 +1,222 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #555879;
+}
+
+.main {
+    margin: 5px;
+    margin-top: 65px;
+    margin-bottom: 0;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.main>h1 {
+    text-align: center;
+}
+
+.blogs {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.blog-card {
+    width: 280px;
+    padding: 40px 20px 20px 20px;
+    border-radius: 20px;
+    height: 250px;
+    margin: 10px;
+    overflow: hidden;
+    position: relative;
+    background-color: #DED3C4;
+    z-index: 1;
+}
+
+.temp {
+    background-color: rgb(250, 250, 250);
+    height: 100%;
+    padding: 10px;
+    padding-left: 15px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.subbtn {
+    border: none;
+    padding: 5px 10px 5px 10px;
+    display: none;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.subbtn:hover {
+    background-color: #ffffff;
+}
+
+.dots {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.show-buttons .dots {
+    background-color: #f3f3f7;
+    /* Or any other color you prefer */
+}
+
+#actualdots {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.show-buttons .subbtn {
+    display: inline-block;
+    /* Show buttons when parent has 'show-buttons' class */
+}
+
+.blog-card {
+    transition: transform 0.4s ease, z-index 0.3s;
+    cursor: pointer;
+}
+
+.read-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(85, 88, 121, 0.6);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    border-radius: 20px;
+    pointer-events: none;
+    /* allows clicks to pass through */
+}
+
+.blog-card:hover .read-overlay {
+    opacity: 1;
+}
+
+.blog-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: auto; /* override preview height */
+    min-height: 80vh;
+    max-height: 80vh; 
+    transform: translate(-50%, -50%) scale(1.05);
+    z-index: 900;
+    background-color: #fff;
+    overflow: auto;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.blog-card.expanded::-webkit-scrollbar {
+    width: 8px;
+}
+
+.blog-card.expanded::-webkit-scrollbar-thumb {
+    background-color: #DED3C4;
+  border-radius: 10px;
+}
+.blog-content-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 1em;
+}
+
+.blog-card.expanded h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.blog-card.expanded .close-btn {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    font-size: 20px;
+    background-color: #e3e3e3;
+    border-radius: 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: none;
+    z-index: 1.9;
+}
+
+.blog-card:hover .read-overlay {
+    opacity: 1;
+}
+
+.blog-card.expanded .read-overlay {
+    display: none;
+}
+
+/* Optional: make .temp position relative so overlay is scoped correctly */
+.temp {
+    position: relative;
+}
+
+@media (max-width: 760px) {
+    .blogs {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+}
+
+@media (max-width: 365px) {
+    .blog-card.expanded {
+        padding: 20px;
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 310px) {
+    .blog-card {
+        height: 200px;
+        padding: 30px 15px 15px 15px;
+    }
+
+    .blog-card.expanded {
+        padding: 15px;
+        padding-top: 30px;
+    }
+}

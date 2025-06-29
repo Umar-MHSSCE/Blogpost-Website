@@ -1,0 +1,76 @@
+body{
+    background-color: #f4f4f4;
+}
+
+.blogform {
+    margin: 20px;
+    margin-top: 80px;
+}
+
+#title {
+    width: 80vw;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#title:focus{
+    outline: none; /* Crucial: Removes the default browser outline */
+    border-color: #DED3C4; /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem #DED3C4;
+}
+
+.blogform>form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#text-blog {
+    width: 80vw;
+    min-height: 65vh;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 17px;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#text-blog:focus {
+    outline: none; /* Crucial: Removes the default browser outline */
+    border-color: #DED3C4; /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem #DED3C4;
+}
+
+#text-blog::-webkit-scrollbar{
+    width: 8px;
+}
+
+#text-blog::-webkit-scrollbar-thumb {
+    background-color: #DED3C4;
+  border-radius: 10px;
+}
+
+#submit {
+    padding: 12px 20px;
+    background-color: #555879;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.25s;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+#submit:hover {
+    background-color: #383b51;
+}

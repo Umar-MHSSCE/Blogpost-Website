@@ -1,0 +1,53 @@
+<%-include("partials/header.ejs") %>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/create.css">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="blogform">
+            <% if (locals.editableblog) { %>
+                <form action="/update" method="post">
+                    <input type="hidden" name="blogid" value="<%= editableblog.id %>">
+                <input type="text" name="title" placeholder="Title" id="title" value="<%= editableblog.title %>" required>
+                <textarea name="blog" id="text-blog" placeholder="Write your Blog here" required><%= editableblog.content %></textarea>
+
+                <input type="submit" value="Update and Publish" id="submit">
+                </form>
+                <% if (locals.status) {%>
+                    <% if (locals.status === 200) { %>
+                       <script>alert("Your Blog has been Published Successfully")</script>
+                    <% } else { %>
+                       <script>alert("Error publishing your blog")</script>
+                    <% } %>
+                <% } %>
+
+            
+            <% } else { %>
+                <form action="/create" method="post">
+                <input type="text" name="title" placeholder="Title" id="title"  required>
+                <textarea name="blog" id="text-blog" placeholder="Write your Blog here" required></textarea>
+
+                <input type="submit" value="Publish" id="submit">
+                </form>
+                <% if (locals.status) {%>
+                   <% if (locals.status === 200) { %>
+                       <script>alert("Your Blog has been Published Successfully")</script>
+                   <% } else { %>
+                       <script>alert("Error publishing your blog")</script>
+                   <% } %>
+                <% } %>
+            <% } %>
+        </div>
+
+    </body>
+
+    </html>
+
+    <%-include("partials/footer.ejs") %>
