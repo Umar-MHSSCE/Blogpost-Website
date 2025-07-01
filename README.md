@@ -75,7 +75,7 @@ A minimalistic blogging platform built with *Node.js, **Express, and **EJS*, des
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/blog-writer.git
+git clone https://github.com/Umar-MHSSCE/Blogpost-Website.git
 cd blog-writer
 npm install
 ```
